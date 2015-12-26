@@ -27,7 +27,7 @@ public abstract class AbstractEntity {
 
     @Override
     public boolean equals(Object obj) {
-        if (id == null || obj == null || !(getClass().equals(obj.getClass()))) {
+        if (id == null || obj == null || !Objects.equals(getClass(), obj.getClass())) {
             return false;
         }
         if (this == obj) {
