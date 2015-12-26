@@ -1,6 +1,10 @@
 package alankstewart.store.core;
 
+import org.springframework.util.Assert;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.SequenceGenerator;
 
 import static org.springframework.util.Assert.hasText;
@@ -9,40 +13,52 @@ import static org.springframework.util.Assert.hasText;
 @SequenceGenerator(name = "seq", sequenceName = "address_seq")
 public class Address extends AbstractEntity {
 
-    private String street;
-    private String city;
-    private String country;
+    public enum State {ACT, NSW, NT, QLD, TAS, VIC, WA}
 
-    public Address(String street, String city, String country) {
-        hasText(street, "Street must not be null or empty!");
-        hasText(city, "City must not be null or empty!");
-        hasText(country, "Country must not be null or empty!");
+    private String street;
+    private String suburb;
+
+    @Enumerated(EnumType.STRING)
+    private State state;
+
+    private String postcode;
+
+    public Address(String street, String suburb, State state, String postcode) {
+        hasText(street, "Street must not be null or empty");
+        hasText(suburb, "Suburb must not be null or empty");
+        Assert.notNull(state, "State must not be null");
+        hasText(postcode, "Postcode must not be null or empty");
         this.street = street;
-        this.city = city;
-        this.country = country;
+        this.suburb = suburb;
+        this.state = state;
+        this.postcode = postcode;
     }
 
     protected Address() {
     }
 
     public Address getCopy() {
-        return new Address(street, city, country);
+        return new Address(street, suburb, state, postcode);
     }
 
     public String getStreet() {
         return street;
     }
 
-    public String getCity() {
-        return city;
+    public String getSuburb() {
+        return suburb;
     }
 
-    public String getCountry() {
-        return country;
+    public State getState() {
+        return state;
+    }
+
+    public String getPostcode() {
+        return postcode;
     }
 
     @Override
     public String toString() {
-        return String.format("Address{%d, %s, %s, %s}", getId(), street, city, country);
+        return String.format("Address{%d, %s %s %s %s}", getId(), street, suburb, state, postcode);
     }
 }

@@ -36,6 +36,6 @@ public class OrderRepositoryIT extends AbstractIntegrationTest {
         List<Order> orders = orderRepository.findByCustomer(customer);
         assertThat(orders, hasSize(1));
         Order order = orders.get(0);
-        assertThat(order.getTotal(), is(closeTo(new BigDecimal("2297.0"), BigDecimal.ZERO)));
+        assertThat(order.getTotal(), is(closeTo(new BigDecimal("2297.00"), BigDecimal.ZERO)));
     }
 }

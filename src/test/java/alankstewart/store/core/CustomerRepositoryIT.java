@@ -18,7 +18,7 @@ public class CustomerRepositoryIT extends AbstractIntegrationTest {
     @Test
     public void shouldSaveCustomer() {
         Customer customer = new Customer("Alan", "Stewart");
-        customer.add(new Address("2 Jubilee Street", "Wahroonga", "Australia"));
+        customer.add(new Address("2 Jubilee Street", "Wahroonga", Address.State.NSW, "2076"));
         EmailAddress emailAddress = new EmailAddress("alankstewart@optusnet.com.au");
         customer.setEmailAddress(emailAddress);
         customerRepository.save(customer);

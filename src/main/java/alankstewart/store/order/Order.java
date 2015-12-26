@@ -53,7 +53,7 @@ public class Order extends AbstractEntity {
     }
 
     public Address getBillingAddress() {
-        return billingAddress != null ? billingAddress : shippingAddress;
+        return billingAddress == null ? shippingAddress : billingAddress;
     }
 
     public Address getShippingAddress() {
