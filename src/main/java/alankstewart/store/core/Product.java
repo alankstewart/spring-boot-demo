@@ -65,4 +65,16 @@ public class Product extends AbstractEntity {
     public BigDecimal getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("Product{")
+                .append("id=").append(getId())
+                .append(", name='").append(name).append('\'')
+                .append(", description='").append(description).append('\'')
+                .append(", price=").append(price)
+                .append(", attributes=").append(attributes)
+                .append('}')
+                .toString();
+    }
 }
