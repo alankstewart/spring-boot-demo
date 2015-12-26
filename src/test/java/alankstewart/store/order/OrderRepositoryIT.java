@@ -7,11 +7,13 @@ import alankstewart.store.core.EmailAddress;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.number.BigDecimalCloseTo.closeTo;
 import static org.junit.Assert.assertThat;
 
 public class OrderRepositoryIT extends AbstractIntegrationTest {
@@ -33,5 +35,7 @@ public class OrderRepositoryIT extends AbstractIntegrationTest {
         assertThat(customer, is(notNullValue()));
         List<Order> orders = orderRepository.findByCustomer(customer);
         assertThat(orders, hasSize(1));
+        Order order = orders.get(0);
+        assertThat(order.getTotal(), is(closeTo(new BigDecimal("2297.0"), BigDecimal.ZERO)));
     }
 }
