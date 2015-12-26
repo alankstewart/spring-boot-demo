@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @EnableAutoConfiguration
 public class SampleController {
 
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(SampleController.class, args);
+    }
+
     @RequestMapping("/")
     @ResponseBody
     String home() {
         return "Hello World!";
-    }
-
-    public static void main(String[] args) throws Exception {
-        SpringApplication.run(SampleController.class, args);
     }
 }

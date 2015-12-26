@@ -43,6 +43,6 @@ public class Address extends AbstractEntity {
 
     @Override
     public String toString() {
-        return String.format("%s, %s, %s", street, city, country);
+        return String.format("Address{%d, %s, %s, %s}", getId(), street, city, country);
     }
 }

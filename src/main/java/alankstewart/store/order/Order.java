@@ -69,4 +69,16 @@ public class Order extends AbstractEntity {
                 .map(LineItem::getTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
+    @Override
+    public String toString() {
+        return new StringBuilder("Order{")
+                .append("id=").append(getId())
+                .append(", customer=").append(customer)
+                .append(", billingAddress=").append(billingAddress)
+                .append(", shippingAddress=").append(shippingAddress)
+                .append(", lineItems=").append(lineItems)
+                .append('}')
+                .toString();
+    }
 }

@@ -52,4 +52,9 @@ public class LineItem extends AbstractEntity {
     public BigDecimal getTotal() {
         return price.multiply(BigDecimal.valueOf(amount));
     }
+
+    @Override
+    public String toString() {
+        return String.format("LineItem{%d, %s, %7.2f, %d}", getId(), product, price, amount);
+    }
 }

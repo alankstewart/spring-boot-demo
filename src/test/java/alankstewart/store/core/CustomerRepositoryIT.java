@@ -19,7 +19,7 @@ public class CustomerRepositoryIT extends AbstractIntegrationTest {
     public void shouldSaveCustomer() {
         Customer customer = new Customer("Alan", "Stewart");
         customer.add(new Address("2 Jubilee Street", "Wahroonga", "Australia"));
-        EmailAddress emailAddress = new EmailAddress("alankstewart@gmail.com");
+        EmailAddress emailAddress = new EmailAddress("alankstewart@optusnet.com.au");
         customer.setEmailAddress(emailAddress);
         customerRepository.save(customer);
         customer = customerRepository.findByEmailAddress(emailAddress);

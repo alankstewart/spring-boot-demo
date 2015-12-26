@@ -65,7 +65,8 @@ public class Customer extends AbstractEntity {
     @Override
     public String toString() {
         return new StringBuilder("Customer{")
-                .append("firstname='").append(firstname).append('\'')
+                .append("id=").append(getId())
+                .append(", firstname='").append(firstname).append('\'')
                 .append(", lastname='").append(lastname).append('\'')
                 .append(", emailAddress=").append(emailAddress)
                 .append(", addresses=").append(addresses)
