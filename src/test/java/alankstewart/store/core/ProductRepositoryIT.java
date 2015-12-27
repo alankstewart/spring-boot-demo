@@ -37,11 +37,11 @@ public class ProductRepositoryIT extends AbstractIntegrationTest {
     @Test
     public void shouldFindProductByAttribute() {
         Product product = new Product("iPhone", new BigDecimal("1000"), "iPhone 6S Plus 64Gb");
-        product.setAttribute("case", "black leather");
+        product.setAttribute("case", "iPhone 5s Case - Black");
         product.setAttribute("screen protector", "Power Support Anti-Glare Film");
         product = productRepository.save(product);
         assertThat(product, is(notNullValue()));
-        List<Product> products = productRepository.findByAttributeAndValue("case", "black leather");
+        List<Product> products = productRepository.findByAttributeAndValue("case", "iPhone 5s Case - Black");
         assertThat(products, hasSize(1));
         products.forEach(System.out::println);
         product = products.get(0);

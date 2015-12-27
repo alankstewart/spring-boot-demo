@@ -1,0 +1,21 @@
+spring:
+  application:
+     name: order-service
+  freemarker:
+    enabled: false
+  thymeleaf:
+    cache: false
+    prefix: classpath:/order-server/templates/
+
+error:
+  path=/error
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 2222
+
+
