@@ -1,11 +1,15 @@
 package alankstewart.store.core;
 
-import alankstewart.store.AbstractIntegrationTest;
+import alankstewart.store.TestConfiguration;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,7 +19,10 @@ import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
-public class ProductRepositoryIT extends AbstractIntegrationTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = TestConfiguration.class)
+@Transactional
+public class ProductRepositoryIT {
 
     @Autowired
     private ProductRepository productRepository;

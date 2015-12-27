@@ -2,6 +2,7 @@ package alankstewart.store.order;
 
 import alankstewart.store.core.AbstractEntity;
 import alankstewart.store.core.Product;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.util.Assert;
 
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import java.math.BigDecimal;
 @SequenceGenerator(name = "seq", sequenceName = "line_item_seq")
 public class LineItem extends AbstractEntity {
 
+    @JsonBackReference
     @ManyToOne
     private Product product;
 

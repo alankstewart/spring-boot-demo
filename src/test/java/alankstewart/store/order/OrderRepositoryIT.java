@@ -1,11 +1,15 @@
 package alankstewart.store.order;
 
-import alankstewart.store.AbstractIntegrationTest;
+import alankstewart.store.TestConfiguration;
 import alankstewart.store.core.Customer;
 import alankstewart.store.core.CustomerRepository;
 import alankstewart.store.core.EmailAddress;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +20,10 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.number.BigDecimalCloseTo.closeTo;
 import static org.junit.Assert.assertThat;
 
-public class OrderRepositoryIT extends AbstractIntegrationTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = TestConfiguration.class)
+@Transactional
+public class OrderRepositoryIT {
 
     @Autowired
     private OrderRepository orderRepository;

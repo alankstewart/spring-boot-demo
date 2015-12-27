@@ -3,6 +3,8 @@ package alankstewart.store.order;
 import alankstewart.store.core.AbstractEntity;
 import alankstewart.store.core.Address;
 import alankstewart.store.core.Customer;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -16,15 +18,19 @@ import java.util.Set;
 @SequenceGenerator(name = "seq", sequenceName = "orders_seq")
 public class Order extends AbstractEntity {
 
+    @JsonBackReference
     @ManyToOne(optional = false)
     private Customer customer;
 
+    @JsonBackReference
     @ManyToOne
     private Address billingAddress;
 
+    @JsonBackReference
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Address shippingAddress;
 
+    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id")
     private Set<LineItem> lineItems = new HashSet<>();
