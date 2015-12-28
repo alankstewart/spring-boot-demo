@@ -16,7 +16,6 @@ import java.util.Set;
 @Entity
 @Table(name = "Orders")
 @SequenceGenerator(name = "seq", sequenceName = "orders_seq")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Order extends AbstractEntity {
 
     @ManyToOne(optional = false)

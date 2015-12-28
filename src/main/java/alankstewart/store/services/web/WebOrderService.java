@@ -1,4 +1,4 @@
-package alankstewart.store.web;
+package alankstewart.store.services.web;
 
 import alankstewart.store.order.Order;
 import alankstewart.store.order.OrderNotFoundException;

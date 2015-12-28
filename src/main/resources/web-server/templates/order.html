@@ -11,13 +11,15 @@
 		<dt>Id</dt>
 		<dd th:text="${order.id}">id</dd>
 		<dt>Name</dt>
-		<dd th:text="${order.customer.firstname} ${order.customer.lastname}">name</dd>
+		<dd th:text="${order.customer.firstname + ' ' + order.customer.lastname}">name</dd>
+		<dt>Total</dt>
+		<dd th:text="${order.total}">total</dd>
 	</dl>
 
 	<div style="height: 2cm">&nbsp;</div>
 
 	<div style="text-align: right">
-		Options: <a th:href="@{/}">Home</a>
+		Options: <a th:href="@{/order}">Home</a>
 	</div>
 
 	<div th:replace="footer :: copy"></div>

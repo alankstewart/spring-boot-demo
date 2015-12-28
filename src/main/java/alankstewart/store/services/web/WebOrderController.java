@@ -1,18 +1,15 @@
-package alankstewart.store.web;
+package alankstewart.store.services.web;
 
 import alankstewart.store.order.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.logging.Logger;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 /**
@@ -37,12 +34,11 @@ public class WebOrderController {
     }
 
     @RequestMapping(value = "/order/{id}", method = GET)
-    @ResponseBody
-    public Order byId(Model model, @PathVariable("id") Long id) {
+    public String byId(Model model, @PathVariable("id") Long id) {
         logger.info("web-service byId() invoked: " + id);
         Order order = orderService.getById(id);
         logger.info("web-service byId() found: " + order);
         model.addAttribute("order", order);
-        return order;
+        return "order";
     }
 }
