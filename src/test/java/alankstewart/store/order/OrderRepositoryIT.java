@@ -32,6 +32,11 @@ public class OrderRepositoryIT {
     private CustomerRepository customerRepository;
 
     @Test
+    public void shouldFindId() {
+        assertThat(orderRepository.findOne(1L), is(notNullValue()));
+    }
+
+    @Test
     public void shouldFindAllOrders() {
         assertThat(orderRepository.count(), is(1L));
     }
