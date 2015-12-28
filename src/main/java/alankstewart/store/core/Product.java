@@ -58,23 +58,11 @@ public class Product extends AbstractEntity {
         return description;
     }
 
-    public Map<String, String> getAttributes() {
-        return Collections.unmodifiableMap(attributes);
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
 
-    @Override
-    public String toString() {
-        return new StringBuilder("Product{")
-                .append("id=").append(getId())
-                .append(", name='").append(name).append('\'')
-                .append(", description='").append(description).append('\'')
-                .append(", price=").append(price)
-                .append(", attributes=").append(attributes)
-                .append('}')
-                .toString();
+    public Map<String, String> getAttributes() {
+        return Collections.unmodifiableMap(attributes);
     }
 }

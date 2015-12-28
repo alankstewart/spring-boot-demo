@@ -32,7 +32,5 @@ public class CustomerRepositoryIT  {
         customer = customerRepository.findByEmailAddress(emailAddress);
         assertThat(customer, is(notNullValue()));
         assertThat(customerRepository.count(), is(4L));
-        List<Customer> customers = customerRepository.findAll();
-        customers.forEach(System.out::println);
     }
 }

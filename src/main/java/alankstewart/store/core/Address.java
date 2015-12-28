@@ -37,10 +37,6 @@ public class Address extends AbstractEntity {
     protected Address() {
     }
 
-    public Address getCopy() {
-        return new Address(street, suburb, state, postcode);
-    }
-
     public String getStreet() {
         return street;
     }
@@ -55,10 +51,5 @@ public class Address extends AbstractEntity {
 
     public String getPostcode() {
         return postcode;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("Address{%d, %s %s %s %s}", getId(), street, suburb, state, postcode);
     }
 }

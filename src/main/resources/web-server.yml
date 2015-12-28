@@ -1,11 +1,11 @@
 spring:
   application:
-    name: order-service
+    name: web-service
   freemarker:
     enabled: false
   thymeleaf:
     cache: false
-    prefix: classpath:/order-server/templates/
+    prefix: classpath:/web-server/templates/
 
 error:
   path=/error
@@ -16,6 +16,4 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 server:
-  port: 2222
-
-
+  port: 8080

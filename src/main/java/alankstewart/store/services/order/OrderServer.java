@@ -1,7 +1,7 @@
 package alankstewart.store.services.order;
 
-import alankstewart.store.ApplicationConfig;
 import alankstewart.store.order.OrderRepository;
+import alankstewart.store.order.OrderWebApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Import;
 
 @EnableAutoConfiguration
 @EnableDiscoveryClient
-@Import(ApplicationConfig.class)
+@Import(OrderWebApplication.class)
 public class OrderServer {
 
     @Autowired
-    private OrderRepository ordderRepository;
+    private OrderRepository orderRepository;
 
     public static void main(String[] args) {
         System.setProperty("spring.config.name", "order-server");

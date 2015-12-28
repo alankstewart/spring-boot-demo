@@ -8,29 +8,27 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.logging.Logger;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+/**
+ * Client controller, fetches Order info from the microservice via
+ * {@link WebOrderService}.
+ */
 @Controller
 public class WebOrderController {
 
     @Autowired
     protected WebOrderService orderService;
 
-    protected Logger logger = Logger.getLogger(WebOrderController.class.getName());
+    private Logger logger = Logger.getLogger(WebOrderController.class.getName());
 
-//    public WebOrderController() {
-//    }
-
-    public void setWebOrderService(WebOrderService orderService) {
+    public WebOrderController(WebOrderService orderService) {
         this.orderService = orderService;
-    }
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.setAllowedFields("id", "searchText");
     }
 
     @RequestMapping(value = "/order", method = GET)
@@ -39,11 +37,12 @@ public class WebOrderController {
     }
 
     @RequestMapping(value = "/order/{id}", method = GET)
-    public String byId(Model model, @PathVariable("id") Long id) {
+    @ResponseBody
+    public Order byId(Model model, @PathVariable("id") Long id) {
         logger.info("web-service byId() invoked: " + id);
         Order order = orderService.getById(id);
         logger.info("web-service byId() found: " + order);
         model.addAttribute("order", order);
-        return "order";
+        return order;
     }
 }

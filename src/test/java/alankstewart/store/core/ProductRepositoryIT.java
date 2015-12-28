@@ -50,7 +50,6 @@ public class ProductRepositoryIT {
         assertThat(product, is(notNullValue()));
         List<Product> products = productRepository.findByAttributeAndValue("case", "iPhone 5s Case - Black");
         assertThat(products, hasSize(1));
-        products.forEach(System.out::println);
         product = products.get(0);
         assertThat(product.getName(), is("iPhone"));
     }

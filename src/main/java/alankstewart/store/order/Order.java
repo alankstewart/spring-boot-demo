@@ -3,8 +3,8 @@ package alankstewart.store.order;
 import alankstewart.store.core.AbstractEntity;
 import alankstewart.store.core.Address;
 import alankstewart.store.core.Customer;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
@@ -16,21 +16,18 @@ import java.util.Set;
 @Entity
 @Table(name = "Orders")
 @SequenceGenerator(name = "seq", sequenceName = "orders_seq")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
 public class Order extends AbstractEntity {
 
-    @JsonBackReference
     @ManyToOne(optional = false)
     private Customer customer;
 
-    @JsonBackReference
     @ManyToOne
     private Address billingAddress;
 
-    @JsonBackReference
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Address shippingAddress;
 
-    @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "order_id")
     private Set<LineItem> lineItems = new HashSet<>();
@@ -43,8 +40,8 @@ public class Order extends AbstractEntity {
         Assert.notNull(customer);
         Assert.notNull(shippingAddress);
         this.customer = customer;
-        this.shippingAddress = shippingAddress.getCopy();
-        this.billingAddress = billingAddress == null ? null : billingAddress.getCopy();
+        this.shippingAddress = shippingAddress;
+        this.billingAddress = billingAddress == null ? null : billingAddress;
     }
 
     protected Order() {
@@ -74,17 +71,5 @@ public class Order extends AbstractEntity {
         return lineItems.stream()
                 .map(LineItem::getTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
-
-    @Override
-    public String toString() {
-        return new StringBuilder("Order{")
-                .append("id=").append(getId())
-                .append(", customer=").append(customer)
-                .append(", billingAddress=").append(billingAddress)
-                .append(", shippingAddress=").append(shippingAddress)
-                .append(", lineItems=").append(lineItems)
-                .append('}')
-                .toString();
     }
 }
