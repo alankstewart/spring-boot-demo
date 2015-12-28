@@ -15,7 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan(useDefaultFilters = false)
 public class WebServer {
 
-    public static final String ORDER_SERVICE_URL = "http://ORDER-SERVICE:2222";
+    public static final String ORDER_SERVICE_URL = "http://ORDER-SERVICE";
 
     public static void main(String[] args) {
         System.setProperty("spring.config.name", "web-server");
