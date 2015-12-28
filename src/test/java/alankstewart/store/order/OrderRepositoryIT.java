@@ -33,7 +33,7 @@ public class OrderRepositoryIT {
 
     @Test
     public void shouldFindId() {
-        assertThat(orderRepository.findOne(1L), is(notNullValue()));
+        assertThat(orderRepository.getOne(1L), is(notNullValue()));
     }
 
     @Test
