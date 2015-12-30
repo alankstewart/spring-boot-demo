@@ -26,7 +26,7 @@ drop table if exists Product_Attributes;
 create table Product_Attributes(attributes_key varchar(255), product_id bigint, attributes varchar(255), version int);
 
 drop table if exists Orders;
-create table Orders(id bigint auto_increment primary key, customer_id bigint, shippingaddress_id bigint, billingAddress_id bigint, version int);
+create table Orders(id bigint auto_increment primary key, customer_id bigint, shippingaddress_id bigint, billingAddress_id bigint, created timestamp, version int);
 
 drop table if exists LineItem;
 create table LineItem(id bigint auto_increment primary key, product_id bigint, amount int, order_id bigint, price decimal, version int);

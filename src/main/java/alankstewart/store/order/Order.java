@@ -3,12 +3,11 @@ package alankstewart.store.order;
 import alankstewart.store.core.AbstractEntity;
 import alankstewart.store.core.Address;
 import alankstewart.store.core.Customer;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,6 +30,8 @@ public class Order extends AbstractEntity {
     @JoinColumn(name = "order_id")
     private Set<LineItem> lineItems = new HashSet<>();
 
+    private LocalDateTime created;
+
     public Order(Customer customer, Address shippingAddress) {
         this(customer, shippingAddress, null);
     }
@@ -41,6 +42,7 @@ public class Order extends AbstractEntity {
         this.customer = customer;
         this.shippingAddress = shippingAddress;
         this.billingAddress = billingAddress == null ? null : billingAddress;
+        created = LocalDateTime.now();
     }
 
     protected Order() {
@@ -64,6 +66,10 @@ public class Order extends AbstractEntity {
 
     public Set<LineItem> getLineItems() {
         return Collections.unmodifiableSet(lineItems);
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
     }
 
     public BigDecimal getTotal() {

@@ -1,9 +1,7 @@
 package alankstewart.store.order;
 
 import alankstewart.store.TestConfiguration;
-import alankstewart.store.core.Customer;
-import alankstewart.store.core.CustomerRepository;
-import alankstewart.store.core.EmailAddress;
+import alankstewart.store.core.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +29,11 @@ public class OrderRepositoryIT {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Test
-    public void shouldFindId() {
+    public void shouldFindById() {
         assertThat(orderRepository.getOne(1L), is(notNullValue()));
     }
 
@@ -49,5 +50,19 @@ public class OrderRepositoryIT {
         assertThat(orders, hasSize(1));
         Order order = orders.get(0);
         assertThat(order.getTotal(), is(closeTo(new BigDecimal("2297.00"), BigDecimal.ZERO)));
+    }
+
+    @Test
+    public void shouldUpdateOrder() {
+        Order order = orderRepository.getOne(1L);
+        assertThat(order, is(notNullValue()));
+        assertThat(order.getVersion(), is(0));
+        Product product = productRepository.getOne(3L);
+        assertThat(product, is(notNullValue()));
+        order.add(new LineItem(product, 2));
+        order = orderRepository.saveAndFlush(order);
+        assertThat(order, is(notNullValue()));
+        assertThat(order.getLineItems(), hasSize(3));
+        assertThat(order.getVersion(), is(1));
     }
 }

@@ -12,6 +12,6 @@ insert into Product (id, name, description, price, version) values (3, 'Dock', '
 insert into Product_Attributes (attributes_key, product_id, attributes, version) values ('connector', 1, 'socket', 0);
 insert into Product_Attributes (attributes_key, product_id, attributes, version) values ('connector', 3, 'plug', 0);
 
-insert into Orders (id, customer_id, shippingaddress_id, billingAddress_id, version) values (1, 1, 2, 2, 0);
+insert into Orders (id, customer_id, shippingaddress_id, billingAddress_id, created, version) values (1, 1, 2, 2, '2012-12-30', 0);
 insert into LineItem (id, product_id, amount, order_id, price, version) values (1, 1, 2, 1, 499.00, 0);
 insert into LineItem (id, product_id, amount, order_id, price, version) values (2, 2, 1, 1, 1299.00, 0);

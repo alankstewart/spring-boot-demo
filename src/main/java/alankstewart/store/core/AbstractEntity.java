@@ -25,10 +25,6 @@ public abstract class AbstractEntity {
         return version;
     }
 
-    public void setVersion(Integer version) {
-        this.version = version;
-    }
-
     @Override
     public boolean equals(Object obj) {
         if (id == null || obj == null || !Objects.equals(getClass(), obj.getClass())) {
