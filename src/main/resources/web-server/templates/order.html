@@ -14,6 +14,8 @@
 		<dd th:text="${order.customer.firstname + ' ' + order.customer.lastname}">name</dd>
 		<dt>Total</dt>
 		<dd th:text="${order.total}">total</dd>
+		<dt>Date Ordered</dt>
+		<dd th:text="${order.created}">created</dd>
 	</dl>
 
 	<div style="height: 2cm">&nbsp;</div>
