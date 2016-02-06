@@ -29,7 +29,7 @@
     </developers>
     <properties>
         <spring.version>4.2.4.RELEASE</spring.version>
-        <hibernate.version>5.0.6.Final</hibernate.version>
+        <hibernate.version>5.0.7.Final</hibernate.version>
         <jackson.version>2.6.4</jackson.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -49,7 +49,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-parent</artifactId>
-                <version>Brixton.M4</version>
+                <version>Brixton.M5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
